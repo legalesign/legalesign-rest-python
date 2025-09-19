@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.0 (2025-09-19)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/legalesign/legalesign-rest-python/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **api:** manual updates ([e4f9e6b](https://github.com/legalesign/legalesign-rest-python/commit/e4f9e6bc20b80109820e424ca023a0810f2a477d))
+* **api:** manual updates ([14390e5](https://github.com/legalesign/legalesign-rest-python/commit/14390e5c766511ac7b24d8c03e06ddaa6102f02d))
+
 ## 0.1.0 (2025-09-19)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/legalesign/legalesign-rest-python/compare/v0.0.1...v0.1.0)

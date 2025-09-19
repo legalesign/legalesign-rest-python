@@ -35,7 +35,7 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/legalesign/legalesign-rest-python"
+Homepage = "https://legalesign.com"
 Repository = "https://github.com/legalesign/legalesign-rest-python"
 
 [project.optional-dependencies]

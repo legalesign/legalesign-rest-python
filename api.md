@@ -39,7 +39,7 @@ Methods:
 - <code title="get /document/{docId}/fields/">client.document.<a href="./src/legalesign/resources/document.py">get_fields</a>(doc_id) -> <a href="./src/legalesign/types/document_get_fields_response.py">DocumentGetFieldsResponse</a></code>
 - <code title="post /document/preview/">client.document.<a href="./src/legalesign/resources/document.py">preview</a>(\*\*<a href="src/legalesign/types/document_preview_params.py">params</a>) -> None</code>
 
-# Group
+# Groups
 
 Types:
 
@@ -49,10 +49,10 @@ from legalesign.types import GroupRetrieveResponse, GroupListResponse
 
 Methods:
 
-- <code title="post /group/">client.group.<a href="./src/legalesign/resources/group.py">create</a>(\*\*<a href="src/legalesign/types/group_create_params.py">params</a>) -> None</code>
-- <code title="get /group/{groupId}/">client.group.<a href="./src/legalesign/resources/group.py">retrieve</a>(group_id) -> <a href="./src/legalesign/types/group_retrieve_response.py">GroupRetrieveResponse</a></code>
-- <code title="patch /group/{groupId}/">client.group.<a href="./src/legalesign/resources/group.py">update</a>(group_id, \*\*<a href="src/legalesign/types/group_update_params.py">params</a>) -> None</code>
-- <code title="get /group/">client.group.<a href="./src/legalesign/resources/group.py">list</a>(\*\*<a href="src/legalesign/types/group_list_params.py">params</a>) -> <a href="./src/legalesign/types/group_list_response.py">GroupListResponse</a></code>
+- <code title="post /group/">client.groups.<a href="./src/legalesign/resources/groups.py">create</a>(\*\*<a href="src/legalesign/types/group_create_params.py">params</a>) -> None</code>
+- <code title="get /group/{groupId}/">client.groups.<a href="./src/legalesign/resources/groups.py">retrieve</a>(group_id) -> <a href="./src/legalesign/types/group_retrieve_response.py">GroupRetrieveResponse</a></code>
+- <code title="patch /group/{groupId}/">client.groups.<a href="./src/legalesign/resources/groups.py">update</a>(group_id, \*\*<a href="src/legalesign/types/group_update_params.py">params</a>) -> None</code>
+- <code title="get /group/">client.groups.<a href="./src/legalesign/resources/groups.py">list</a>(\*\*<a href="src/legalesign/types/group_list_params.py">params</a>) -> <a href="./src/legalesign/types/group_list_response.py">GroupListResponse</a></code>
 
 # Invited
 

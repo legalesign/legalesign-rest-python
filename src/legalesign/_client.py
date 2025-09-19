@@ -116,7 +116,7 @@ class Legalesign(SyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("LEGALESIGN_BASE_URL")
         if base_url is None:
-            base_url = f"https://eu-api.legalesign.com/api/v1"
+            base_url = f"https://lon-dev.legalesign.com/api/v1"
 
         super().__init__(
             version=__version__,
@@ -310,7 +310,7 @@ class AsyncLegalesign(AsyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("LEGALESIGN_BASE_URL")
         if base_url is None:
-            base_url = f"https://eu-api.legalesign.com/api/v1"
+            base_url = f"https://lon-dev.legalesign.com/api/v1"
 
         super().__init__(
             version=__version__,

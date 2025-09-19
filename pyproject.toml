@@ -5,7 +5,7 @@ description = "The official Python library for the legalesign API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "Legalesign", email = "support@legalesign.com" },
+{ name = "Legalesign", email = "sales@legalesign.com" },
 ]
 dependencies = [
     "httpx>=0.23.0, <1",

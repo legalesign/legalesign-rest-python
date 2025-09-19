@@ -32,8 +32,8 @@ client = Legalesign(
     api_key=os.environ.get("LEGALESIGN_API_KEY"),  # This is the default and can be omitted
 )
 
-attachments = client.attachment.list()
-print(attachments.meta)
+groups = client.group.list()
+print(groups.meta)
 ```
 
 While you can provide an `api_key` keyword argument,
@@ -56,8 +56,8 @@ client = AsyncLegalesign(
 
 
 async def main() -> None:
-    attachments = await client.attachment.list()
-    print(attachments.meta)
+    groups = await client.group.list()
+    print(groups.meta)
 
 
 asyncio.run(main())
@@ -89,8 +89,8 @@ async def main() -> None:
         api_key="My API Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
-        attachments = await client.attachment.list()
-        print(attachments.meta)
+        groups = await client.group.list()
+        print(groups.meta)
 
 
 asyncio.run(main())
@@ -121,7 +121,7 @@ from legalesign import Legalesign
 client = Legalesign()
 
 try:
-    client.attachment.list()
+    client.group.list()
 except legalesign.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
@@ -164,7 +164,7 @@ client = Legalesign(
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).attachment.list()
+client.with_options(max_retries=5).group.list()
 ```
 
 ### Timeouts
@@ -187,7 +187,7 @@ client = Legalesign(
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).attachment.list()
+client.with_options(timeout=5.0).group.list()
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -228,11 +228,11 @@ The "raw" Response object can be accessed by prefixing `.with_raw_response.` to 
 from legalesign import Legalesign
 
 client = Legalesign()
-response = client.attachment.with_raw_response.list()
+response = client.group.with_raw_response.list()
 print(response.headers.get('X-My-Header'))
 
-attachment = response.parse()  # get the object that `attachment.list()` would have returned
-print(attachment.meta)
+group = response.parse()  # get the object that `group.list()` would have returned
+print(group.meta)
 ```
 
 These methods return an [`APIResponse`](https://github.com/legalesign/legalesign-rest-python/tree/main/src/legalesign/_response.py) object.
@@ -246,7 +246,7 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.attachment.with_streaming_response.list() as response:
+with client.group.with_streaming_response.list() as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():

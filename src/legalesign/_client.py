@@ -24,7 +24,7 @@ from ._version import __version__
 from .resources import (
     pdf,
     user,
-    groups,
+    group,
     member,
     signer,
     status,
@@ -60,7 +60,7 @@ __all__ = [
 class Legalesign(SyncAPIClient):
     attachment: attachment.AttachmentResource
     document: document.DocumentResource
-    groups: groups.GroupsResource
+    group: group.GroupResource
     invited: invited.InvitedResource
     member: member.MemberResource
     notifications: notifications.NotificationsResource
@@ -131,7 +131,7 @@ class Legalesign(SyncAPIClient):
 
         self.attachment = attachment.AttachmentResource(self)
         self.document = document.DocumentResource(self)
-        self.groups = groups.GroupsResource(self)
+        self.group = group.GroupResource(self)
         self.invited = invited.InvitedResource(self)
         self.member = member.MemberResource(self)
         self.notifications = notifications.NotificationsResource(self)
@@ -254,7 +254,7 @@ class Legalesign(SyncAPIClient):
 class AsyncLegalesign(AsyncAPIClient):
     attachment: attachment.AsyncAttachmentResource
     document: document.AsyncDocumentResource
-    groups: groups.AsyncGroupsResource
+    group: group.AsyncGroupResource
     invited: invited.AsyncInvitedResource
     member: member.AsyncMemberResource
     notifications: notifications.AsyncNotificationsResource
@@ -325,7 +325,7 @@ class AsyncLegalesign(AsyncAPIClient):
 
         self.attachment = attachment.AsyncAttachmentResource(self)
         self.document = document.AsyncDocumentResource(self)
-        self.groups = groups.AsyncGroupsResource(self)
+        self.group = group.AsyncGroupResource(self)
         self.invited = invited.AsyncInvitedResource(self)
         self.member = member.AsyncMemberResource(self)
         self.notifications = notifications.AsyncNotificationsResource(self)
@@ -449,7 +449,7 @@ class LegalesignWithRawResponse:
     def __init__(self, client: Legalesign) -> None:
         self.attachment = attachment.AttachmentResourceWithRawResponse(client.attachment)
         self.document = document.DocumentResourceWithRawResponse(client.document)
-        self.groups = groups.GroupsResourceWithRawResponse(client.groups)
+        self.group = group.GroupResourceWithRawResponse(client.group)
         self.invited = invited.InvitedResourceWithRawResponse(client.invited)
         self.member = member.MemberResourceWithRawResponse(client.member)
         self.notifications = notifications.NotificationsResourceWithRawResponse(client.notifications)
@@ -467,7 +467,7 @@ class AsyncLegalesignWithRawResponse:
     def __init__(self, client: AsyncLegalesign) -> None:
         self.attachment = attachment.AsyncAttachmentResourceWithRawResponse(client.attachment)
         self.document = document.AsyncDocumentResourceWithRawResponse(client.document)
-        self.groups = groups.AsyncGroupsResourceWithRawResponse(client.groups)
+        self.group = group.AsyncGroupResourceWithRawResponse(client.group)
         self.invited = invited.AsyncInvitedResourceWithRawResponse(client.invited)
         self.member = member.AsyncMemberResourceWithRawResponse(client.member)
         self.notifications = notifications.AsyncNotificationsResourceWithRawResponse(client.notifications)
@@ -485,7 +485,7 @@ class LegalesignWithStreamedResponse:
     def __init__(self, client: Legalesign) -> None:
         self.attachment = attachment.AttachmentResourceWithStreamingResponse(client.attachment)
         self.document = document.DocumentResourceWithStreamingResponse(client.document)
-        self.groups = groups.GroupsResourceWithStreamingResponse(client.groups)
+        self.group = group.GroupResourceWithStreamingResponse(client.group)
         self.invited = invited.InvitedResourceWithStreamingResponse(client.invited)
         self.member = member.MemberResourceWithStreamingResponse(client.member)
         self.notifications = notifications.NotificationsResourceWithStreamingResponse(client.notifications)
@@ -503,7 +503,7 @@ class AsyncLegalesignWithStreamedResponse:
     def __init__(self, client: AsyncLegalesign) -> None:
         self.attachment = attachment.AsyncAttachmentResourceWithStreamingResponse(client.attachment)
         self.document = document.AsyncDocumentResourceWithStreamingResponse(client.document)
-        self.groups = groups.AsyncGroupsResourceWithStreamingResponse(client.groups)
+        self.group = group.AsyncGroupResourceWithStreamingResponse(client.group)
         self.invited = invited.AsyncInvitedResourceWithStreamingResponse(client.invited)
         self.member = member.AsyncMemberResourceWithStreamingResponse(client.member)
         self.notifications = notifications.AsyncNotificationsResourceWithStreamingResponse(client.notifications)

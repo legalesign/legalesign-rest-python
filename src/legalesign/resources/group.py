@@ -19,28 +19,28 @@ from .._base_client import make_request_options
 from ..types.group_list_response import GroupListResponse
 from ..types.group_retrieve_response import GroupRetrieveResponse
 
-__all__ = ["GroupsResource", "AsyncGroupsResource"]
+__all__ = ["GroupResource", "AsyncGroupResource"]
 
 
-class GroupsResource(SyncAPIResource):
+class GroupResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> GroupsResourceWithRawResponse:
+    def with_raw_response(self) -> GroupResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/legalesign/legalesign-rest-python#accessing-raw-response-data-eg-headers
         """
-        return GroupsResourceWithRawResponse(self)
+        return GroupResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> GroupsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> GroupResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/legalesign/legalesign-rest-python#with_streaming_response
         """
-        return GroupsResourceWithStreamingResponse(self)
+        return GroupResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -202,25 +202,25 @@ class GroupsResource(SyncAPIResource):
         )
 
 
-class AsyncGroupsResource(AsyncAPIResource):
+class AsyncGroupResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncGroupsResourceWithRawResponse:
+    def with_raw_response(self) -> AsyncGroupResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
         For more information, see https://www.github.com/legalesign/legalesign-rest-python#accessing-raw-response-data-eg-headers
         """
-        return AsyncGroupsResourceWithRawResponse(self)
+        return AsyncGroupResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncGroupsResourceWithStreamingResponse:
+    def with_streaming_response(self) -> AsyncGroupResourceWithStreamingResponse:
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
         For more information, see https://www.github.com/legalesign/legalesign-rest-python#with_streaming_response
         """
-        return AsyncGroupsResourceWithStreamingResponse(self)
+        return AsyncGroupResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -382,73 +382,73 @@ class AsyncGroupsResource(AsyncAPIResource):
         )
 
 
-class GroupsResourceWithRawResponse:
-    def __init__(self, groups: GroupsResource) -> None:
-        self._groups = groups
+class GroupResourceWithRawResponse:
+    def __init__(self, group: GroupResource) -> None:
+        self._group = group
 
         self.create = to_raw_response_wrapper(
-            groups.create,
+            group.create,
         )
         self.retrieve = to_raw_response_wrapper(
-            groups.retrieve,
+            group.retrieve,
         )
         self.update = to_raw_response_wrapper(
-            groups.update,
+            group.update,
         )
         self.list = to_raw_response_wrapper(
-            groups.list,
+            group.list,
         )
 
 
-class AsyncGroupsResourceWithRawResponse:
-    def __init__(self, groups: AsyncGroupsResource) -> None:
-        self._groups = groups
+class AsyncGroupResourceWithRawResponse:
+    def __init__(self, group: AsyncGroupResource) -> None:
+        self._group = group
 
         self.create = async_to_raw_response_wrapper(
-            groups.create,
+            group.create,
         )
         self.retrieve = async_to_raw_response_wrapper(
-            groups.retrieve,
+            group.retrieve,
         )
         self.update = async_to_raw_response_wrapper(
-            groups.update,
+            group.update,
         )
         self.list = async_to_raw_response_wrapper(
-            groups.list,
+            group.list,
         )
 
 
-class GroupsResourceWithStreamingResponse:
-    def __init__(self, groups: GroupsResource) -> None:
-        self._groups = groups
+class GroupResourceWithStreamingResponse:
+    def __init__(self, group: GroupResource) -> None:
+        self._group = group
 
         self.create = to_streamed_response_wrapper(
-            groups.create,
+            group.create,
         )
         self.retrieve = to_streamed_response_wrapper(
-            groups.retrieve,
+            group.retrieve,
         )
         self.update = to_streamed_response_wrapper(
-            groups.update,
+            group.update,
         )
         self.list = to_streamed_response_wrapper(
-            groups.list,
+            group.list,
         )
 
 
-class AsyncGroupsResourceWithStreamingResponse:
-    def __init__(self, groups: AsyncGroupsResource) -> None:
-        self._groups = groups
+class AsyncGroupResourceWithStreamingResponse:
+    def __init__(self, group: AsyncGroupResource) -> None:
+        self._group = group
 
         self.create = async_to_streamed_response_wrapper(
-            groups.create,
+            group.create,
         )
         self.retrieve = async_to_streamed_response_wrapper(
-            groups.retrieve,
+            group.retrieve,
         )
         self.update = async_to_streamed_response_wrapper(
-            groups.update,
+            group.update,
         )
         self.list = async_to_streamed_response_wrapper(
-            groups.list,
+            group.list,
         )

@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..types import template_list_params, template_create_params, template_update_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -29,7 +29,7 @@ class TemplateResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/legalesign-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/legalesign/legalesign-rest-python#accessing-raw-response-data-eg-headers
         """
         return TemplateResourceWithRawResponse(self)
 
@@ -38,7 +38,7 @@ class TemplateResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/legalesign-python#with_streaming_response
+        For more information, see https://www.github.com/legalesign/legalesign-rest-python#with_streaming_response
         """
         return TemplateResourceWithStreamingResponse(self)
 
@@ -48,13 +48,13 @@ class TemplateResource(SyncAPIResource):
         group: str,
         latest_text: str,
         title: str,
-        user: str | NotGiven = NOT_GIVEN,
+        user: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Create a new html/text template.
 
@@ -102,7 +102,7 @@ class TemplateResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TemplateRetrieveResponse:
         """
         Get text template
@@ -136,7 +136,7 @@ class TemplateResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Update text template
@@ -167,16 +167,16 @@ class TemplateResource(SyncAPIResource):
     def list(
         self,
         *,
-        archive: str | NotGiven = NOT_GIVEN,
-        group: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        archive: str | Omit = omit,
+        group: str | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TemplateListResponse:
         """
         Get text templates
@@ -226,7 +226,7 @@ class TemplateResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Archives a template (is recoverable, i.e.
 
@@ -261,7 +261,7 @@ class AsyncTemplateResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/legalesign-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/legalesign/legalesign-rest-python#accessing-raw-response-data-eg-headers
         """
         return AsyncTemplateResourceWithRawResponse(self)
 
@@ -270,7 +270,7 @@ class AsyncTemplateResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/legalesign-python#with_streaming_response
+        For more information, see https://www.github.com/legalesign/legalesign-rest-python#with_streaming_response
         """
         return AsyncTemplateResourceWithStreamingResponse(self)
 
@@ -280,13 +280,13 @@ class AsyncTemplateResource(AsyncAPIResource):
         group: str,
         latest_text: str,
         title: str,
-        user: str | NotGiven = NOT_GIVEN,
+        user: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Create a new html/text template.
 
@@ -334,7 +334,7 @@ class AsyncTemplateResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TemplateRetrieveResponse:
         """
         Get text template
@@ -368,7 +368,7 @@ class AsyncTemplateResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Update text template
@@ -399,16 +399,16 @@ class AsyncTemplateResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        archive: str | NotGiven = NOT_GIVEN,
-        group: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        archive: str | Omit = omit,
+        group: str | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TemplateListResponse:
         """
         Get text templates
@@ -458,7 +458,7 @@ class AsyncTemplateResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Archives a template (is recoverable, i.e.
 

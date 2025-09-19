@@ -6,7 +6,7 @@ from typing import Iterable
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._types import Body, Query, Headers, NoneType, NotGiven, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -30,7 +30,7 @@ class FieldsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/legalesign-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/legalesign/legalesign-rest-python#accessing-raw-response-data-eg-headers
         """
         return FieldsResourceWithRawResponse(self)
 
@@ -39,7 +39,7 @@ class FieldsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/legalesign-python#with_streaming_response
+        For more information, see https://www.github.com/legalesign/legalesign-rest-python#with_streaming_response
         """
         return FieldsResourceWithStreamingResponse(self)
 
@@ -53,7 +53,7 @@ class FieldsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Replace existing pdf fields with new ones
@@ -88,7 +88,7 @@ class FieldsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FieldListResponse:
         """
         Get PDF template fields
@@ -120,7 +120,7 @@ class AsyncFieldsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/legalesign-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/legalesign/legalesign-rest-python#accessing-raw-response-data-eg-headers
         """
         return AsyncFieldsResourceWithRawResponse(self)
 
@@ -129,7 +129,7 @@ class AsyncFieldsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/legalesign-python#with_streaming_response
+        For more information, see https://www.github.com/legalesign/legalesign-rest-python#with_streaming_response
         """
         return AsyncFieldsResourceWithStreamingResponse(self)
 
@@ -143,7 +143,7 @@ class AsyncFieldsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Replace existing pdf fields with new ones
@@ -178,7 +178,7 @@ class AsyncFieldsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FieldListResponse:
         """
         Get PDF template fields

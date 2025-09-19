@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Union, Mapping
+from typing import Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -11,20 +11,20 @@ import httpx
 from . import _exceptions
 from ._qs import Querystring
 from ._types import (
-    NOT_GIVEN,
     Omit,
     Timeout,
     NotGiven,
     Transport,
     ProxiesTypes,
     RequestOptions,
+    not_given,
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
 from .resources import (
     pdf,
     user,
-    group,
+    groups,
     member,
     signer,
     status,
@@ -60,7 +60,7 @@ __all__ = [
 class Legalesign(SyncAPIClient):
     attachment: attachment.AttachmentResource
     document: document.DocumentResource
-    group: group.GroupResource
+    groups: groups.GroupsResource
     invited: invited.InvitedResource
     member: member.MemberResource
     notifications: notifications.NotificationsResource
@@ -83,7 +83,7 @@ class Legalesign(SyncAPIClient):
         *,
         api_key: str | None = None,
         base_url: str | httpx.URL | None = None,
-        timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -116,7 +116,7 @@ class Legalesign(SyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("LEGALESIGN_BASE_URL")
         if base_url is None:
-            base_url = f"https://eu-api.legalesign.com/api/v1"
+            base_url = f"https://lon-dev.legalesign.com/api/v1"
 
         super().__init__(
             version=__version__,
@@ -131,7 +131,7 @@ class Legalesign(SyncAPIClient):
 
         self.attachment = attachment.AttachmentResource(self)
         self.document = document.DocumentResource(self)
-        self.group = group.GroupResource(self)
+        self.groups = groups.GroupsResource(self)
         self.invited = invited.InvitedResource(self)
         self.member = member.MemberResource(self)
         self.notifications = notifications.NotificationsResource(self)
@@ -171,9 +171,9 @@ class Legalesign(SyncAPIClient):
         *,
         api_key: str | None = None,
         base_url: str | httpx.URL | None = None,
-        timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.Client | None = None,
-        max_retries: int | NotGiven = NOT_GIVEN,
+        max_retries: int | NotGiven = not_given,
         default_headers: Mapping[str, str] | None = None,
         set_default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -254,7 +254,7 @@ class Legalesign(SyncAPIClient):
 class AsyncLegalesign(AsyncAPIClient):
     attachment: attachment.AsyncAttachmentResource
     document: document.AsyncDocumentResource
-    group: group.AsyncGroupResource
+    groups: groups.AsyncGroupsResource
     invited: invited.AsyncInvitedResource
     member: member.AsyncMemberResource
     notifications: notifications.AsyncNotificationsResource
@@ -277,7 +277,7 @@ class AsyncLegalesign(AsyncAPIClient):
         *,
         api_key: str | None = None,
         base_url: str | httpx.URL | None = None,
-        timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
         default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -310,7 +310,7 @@ class AsyncLegalesign(AsyncAPIClient):
         if base_url is None:
             base_url = os.environ.get("LEGALESIGN_BASE_URL")
         if base_url is None:
-            base_url = f"https://eu-api.legalesign.com/api/v1"
+            base_url = f"https://lon-dev.legalesign.com/api/v1"
 
         super().__init__(
             version=__version__,
@@ -325,7 +325,7 @@ class AsyncLegalesign(AsyncAPIClient):
 
         self.attachment = attachment.AsyncAttachmentResource(self)
         self.document = document.AsyncDocumentResource(self)
-        self.group = group.AsyncGroupResource(self)
+        self.groups = groups.AsyncGroupsResource(self)
         self.invited = invited.AsyncInvitedResource(self)
         self.member = member.AsyncMemberResource(self)
         self.notifications = notifications.AsyncNotificationsResource(self)
@@ -365,9 +365,9 @@ class AsyncLegalesign(AsyncAPIClient):
         *,
         api_key: str | None = None,
         base_url: str | httpx.URL | None = None,
-        timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.AsyncClient | None = None,
-        max_retries: int | NotGiven = NOT_GIVEN,
+        max_retries: int | NotGiven = not_given,
         default_headers: Mapping[str, str] | None = None,
         set_default_headers: Mapping[str, str] | None = None,
         default_query: Mapping[str, object] | None = None,
@@ -449,7 +449,7 @@ class LegalesignWithRawResponse:
     def __init__(self, client: Legalesign) -> None:
         self.attachment = attachment.AttachmentResourceWithRawResponse(client.attachment)
         self.document = document.DocumentResourceWithRawResponse(client.document)
-        self.group = group.GroupResourceWithRawResponse(client.group)
+        self.groups = groups.GroupsResourceWithRawResponse(client.groups)
         self.invited = invited.InvitedResourceWithRawResponse(client.invited)
         self.member = member.MemberResourceWithRawResponse(client.member)
         self.notifications = notifications.NotificationsResourceWithRawResponse(client.notifications)
@@ -467,7 +467,7 @@ class AsyncLegalesignWithRawResponse:
     def __init__(self, client: AsyncLegalesign) -> None:
         self.attachment = attachment.AsyncAttachmentResourceWithRawResponse(client.attachment)
         self.document = document.AsyncDocumentResourceWithRawResponse(client.document)
-        self.group = group.AsyncGroupResourceWithRawResponse(client.group)
+        self.groups = groups.AsyncGroupsResourceWithRawResponse(client.groups)
         self.invited = invited.AsyncInvitedResourceWithRawResponse(client.invited)
         self.member = member.AsyncMemberResourceWithRawResponse(client.member)
         self.notifications = notifications.AsyncNotificationsResourceWithRawResponse(client.notifications)
@@ -485,7 +485,7 @@ class LegalesignWithStreamedResponse:
     def __init__(self, client: Legalesign) -> None:
         self.attachment = attachment.AttachmentResourceWithStreamingResponse(client.attachment)
         self.document = document.DocumentResourceWithStreamingResponse(client.document)
-        self.group = group.GroupResourceWithStreamingResponse(client.group)
+        self.groups = groups.GroupsResourceWithStreamingResponse(client.groups)
         self.invited = invited.InvitedResourceWithStreamingResponse(client.invited)
         self.member = member.MemberResourceWithStreamingResponse(client.member)
         self.notifications = notifications.NotificationsResourceWithStreamingResponse(client.notifications)
@@ -503,7 +503,7 @@ class AsyncLegalesignWithStreamedResponse:
     def __init__(self, client: AsyncLegalesign) -> None:
         self.attachment = attachment.AsyncAttachmentResourceWithStreamingResponse(client.attachment)
         self.document = document.AsyncDocumentResourceWithStreamingResponse(client.document)
-        self.group = group.AsyncGroupResourceWithStreamingResponse(client.group)
+        self.groups = groups.AsyncGroupsResourceWithStreamingResponse(client.groups)
         self.invited = invited.AsyncInvitedResourceWithStreamingResponse(client.invited)
         self.member = member.AsyncMemberResourceWithStreamingResponse(client.member)
         self.notifications = notifications.AsyncNotificationsResourceWithStreamingResponse(client.notifications)

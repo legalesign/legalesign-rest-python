@@ -17,13 +17,13 @@ from legalesign.types import (
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
-class TestGroup:
+class TestGroups:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create(self, client: Legalesign) -> None:
-        group = client.group.create(
+        group = client.groups.create(
             name="xxxx",
         )
         assert group is None
@@ -31,7 +31,7 @@ class TestGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_create_with_all_params(self, client: Legalesign) -> None:
-        group = client.group.create(
+        group = client.groups.create(
             name="xxxx",
             xframe_allow=True,
         )
@@ -40,7 +40,7 @@ class TestGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_create(self, client: Legalesign) -> None:
-        response = client.group.with_raw_response.create(
+        response = client.groups.with_raw_response.create(
             name="xxxx",
         )
 
@@ -52,7 +52,7 @@ class TestGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_create(self, client: Legalesign) -> None:
-        with client.group.with_streaming_response.create(
+        with client.groups.with_streaming_response.create(
             name="xxxx",
         ) as response:
             assert not response.is_closed
@@ -66,7 +66,7 @@ class TestGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: Legalesign) -> None:
-        group = client.group.retrieve(
+        group = client.groups.retrieve(
             "groupId",
         )
         assert_matches_type(GroupRetrieveResponse, group, path=["response"])
@@ -74,7 +74,7 @@ class TestGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: Legalesign) -> None:
-        response = client.group.with_raw_response.retrieve(
+        response = client.groups.with_raw_response.retrieve(
             "groupId",
         )
 
@@ -86,7 +86,7 @@ class TestGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: Legalesign) -> None:
-        with client.group.with_streaming_response.retrieve(
+        with client.groups.with_streaming_response.retrieve(
             "groupId",
         ) as response:
             assert not response.is_closed
@@ -101,14 +101,14 @@ class TestGroup:
     @parametrize
     def test_path_params_retrieve(self, client: Legalesign) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
-            client.group.with_raw_response.retrieve(
+            client.groups.with_raw_response.retrieve(
                 "",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update(self, client: Legalesign) -> None:
-        group = client.group.update(
+        group = client.groups.update(
             group_id="groupId",
         )
         assert group is None
@@ -116,7 +116,7 @@ class TestGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_update_with_all_params(self, client: Legalesign) -> None:
-        group = client.group.update(
+        group = client.groups.update(
             group_id="groupId",
             public_name="public_name",
         )
@@ -125,7 +125,7 @@ class TestGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_update(self, client: Legalesign) -> None:
-        response = client.group.with_raw_response.update(
+        response = client.groups.with_raw_response.update(
             group_id="groupId",
         )
 
@@ -137,7 +137,7 @@ class TestGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_update(self, client: Legalesign) -> None:
-        with client.group.with_streaming_response.update(
+        with client.groups.with_streaming_response.update(
             group_id="groupId",
         ) as response:
             assert not response.is_closed
@@ -152,20 +152,20 @@ class TestGroup:
     @parametrize
     def test_path_params_update(self, client: Legalesign) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
-            client.group.with_raw_response.update(
+            client.groups.with_raw_response.update(
                 group_id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list(self, client: Legalesign) -> None:
-        group = client.group.list()
+        group = client.groups.list()
         assert_matches_type(GroupListResponse, group, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: Legalesign) -> None:
-        group = client.group.list(
+        group = client.groups.list(
             limit=0,
             offset=0,
         )
@@ -174,7 +174,7 @@ class TestGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: Legalesign) -> None:
-        response = client.group.with_raw_response.list()
+        response = client.groups.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -184,7 +184,7 @@ class TestGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: Legalesign) -> None:
-        with client.group.with_streaming_response.list() as response:
+        with client.groups.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -194,7 +194,7 @@ class TestGroup:
         assert cast(Any, response.is_closed) is True
 
 
-class TestAsyncGroup:
+class TestAsyncGroups:
     parametrize = pytest.mark.parametrize(
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
@@ -202,7 +202,7 @@ class TestAsyncGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create(self, async_client: AsyncLegalesign) -> None:
-        group = await async_client.group.create(
+        group = await async_client.groups.create(
             name="xxxx",
         )
         assert group is None
@@ -210,7 +210,7 @@ class TestAsyncGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncLegalesign) -> None:
-        group = await async_client.group.create(
+        group = await async_client.groups.create(
             name="xxxx",
             xframe_allow=True,
         )
@@ -219,7 +219,7 @@ class TestAsyncGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncLegalesign) -> None:
-        response = await async_client.group.with_raw_response.create(
+        response = await async_client.groups.with_raw_response.create(
             name="xxxx",
         )
 
@@ -231,7 +231,7 @@ class TestAsyncGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncLegalesign) -> None:
-        async with async_client.group.with_streaming_response.create(
+        async with async_client.groups.with_streaming_response.create(
             name="xxxx",
         ) as response:
             assert not response.is_closed
@@ -245,7 +245,7 @@ class TestAsyncGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncLegalesign) -> None:
-        group = await async_client.group.retrieve(
+        group = await async_client.groups.retrieve(
             "groupId",
         )
         assert_matches_type(GroupRetrieveResponse, group, path=["response"])
@@ -253,7 +253,7 @@ class TestAsyncGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncLegalesign) -> None:
-        response = await async_client.group.with_raw_response.retrieve(
+        response = await async_client.groups.with_raw_response.retrieve(
             "groupId",
         )
 
@@ -265,7 +265,7 @@ class TestAsyncGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncLegalesign) -> None:
-        async with async_client.group.with_streaming_response.retrieve(
+        async with async_client.groups.with_streaming_response.retrieve(
             "groupId",
         ) as response:
             assert not response.is_closed
@@ -280,14 +280,14 @@ class TestAsyncGroup:
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncLegalesign) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
-            await async_client.group.with_raw_response.retrieve(
+            await async_client.groups.with_raw_response.retrieve(
                 "",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update(self, async_client: AsyncLegalesign) -> None:
-        group = await async_client.group.update(
+        group = await async_client.groups.update(
             group_id="groupId",
         )
         assert group is None
@@ -295,7 +295,7 @@ class TestAsyncGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncLegalesign) -> None:
-        group = await async_client.group.update(
+        group = await async_client.groups.update(
             group_id="groupId",
             public_name="public_name",
         )
@@ -304,7 +304,7 @@ class TestAsyncGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncLegalesign) -> None:
-        response = await async_client.group.with_raw_response.update(
+        response = await async_client.groups.with_raw_response.update(
             group_id="groupId",
         )
 
@@ -316,7 +316,7 @@ class TestAsyncGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncLegalesign) -> None:
-        async with async_client.group.with_streaming_response.update(
+        async with async_client.groups.with_streaming_response.update(
             group_id="groupId",
         ) as response:
             assert not response.is_closed
@@ -331,20 +331,20 @@ class TestAsyncGroup:
     @parametrize
     async def test_path_params_update(self, async_client: AsyncLegalesign) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
-            await async_client.group.with_raw_response.update(
+            await async_client.groups.with_raw_response.update(
                 group_id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncLegalesign) -> None:
-        group = await async_client.group.list()
+        group = await async_client.groups.list()
         assert_matches_type(GroupListResponse, group, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncLegalesign) -> None:
-        group = await async_client.group.list(
+        group = await async_client.groups.list(
             limit=0,
             offset=0,
         )
@@ -353,7 +353,7 @@ class TestAsyncGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncLegalesign) -> None:
-        response = await async_client.group.with_raw_response.list()
+        response = await async_client.groups.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -363,7 +363,7 @@ class TestAsyncGroup:
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncLegalesign) -> None:
-        async with async_client.group.with_streaming_response.list() as response:
+        async with async_client.groups.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

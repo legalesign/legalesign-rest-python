@@ -7,7 +7,7 @@ from typing import Union
 import httpx
 
 from ..types import attachment_list_params, attachment_upload_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, Base64FileInput
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, Base64FileInput, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -31,7 +31,7 @@ class AttachmentResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/legalesign-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/legalesign/legalesign-rest-python#accessing-raw-response-data-eg-headers
         """
         return AttachmentResourceWithRawResponse(self)
 
@@ -40,7 +40,7 @@ class AttachmentResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/legalesign-python#with_streaming_response
+        For more information, see https://www.github.com/legalesign/legalesign-rest-python#with_streaming_response
         """
         return AttachmentResourceWithStreamingResponse(self)
 
@@ -53,7 +53,7 @@ class AttachmentResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AttachmentResponse:
         """
         Get attachment
@@ -80,15 +80,15 @@ class AttachmentResource(SyncAPIResource):
     def list(
         self,
         *,
-        group: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        group: str | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AttachmentListResponse:
         """
         List attachments in your groups
@@ -137,7 +137,7 @@ class AttachmentResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete attachment
@@ -168,14 +168,14 @@ class AttachmentResource(SyncAPIResource):
         filename: str,
         group: str,
         pdf_file: Union[str, Base64FileInput],
-        description: str | NotGiven = NOT_GIVEN,
-        user: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        user: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Upload PDF attachment
@@ -224,7 +224,7 @@ class AsyncAttachmentResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/legalesign-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/legalesign/legalesign-rest-python#accessing-raw-response-data-eg-headers
         """
         return AsyncAttachmentResourceWithRawResponse(self)
 
@@ -233,7 +233,7 @@ class AsyncAttachmentResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/legalesign-python#with_streaming_response
+        For more information, see https://www.github.com/legalesign/legalesign-rest-python#with_streaming_response
         """
         return AsyncAttachmentResourceWithStreamingResponse(self)
 
@@ -246,7 +246,7 @@ class AsyncAttachmentResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AttachmentResponse:
         """
         Get attachment
@@ -273,15 +273,15 @@ class AsyncAttachmentResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        group: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        group: str | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AttachmentListResponse:
         """
         List attachments in your groups
@@ -330,7 +330,7 @@ class AsyncAttachmentResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete attachment
@@ -361,14 +361,14 @@ class AsyncAttachmentResource(AsyncAPIResource):
         filename: str,
         group: str,
         pdf_file: Union[str, Base64FileInput],
-        description: str | NotGiven = NOT_GIVEN,
-        user: str | NotGiven = NOT_GIVEN,
+        description: str | Omit = omit,
+        user: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Upload PDF attachment

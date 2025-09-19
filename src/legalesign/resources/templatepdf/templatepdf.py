@@ -15,7 +15,7 @@ from .fields import (
     AsyncFieldsResourceWithStreamingResponse,
 )
 from ...types import templatepdf_list_params, templatepdf_create_params
-from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven, Base64FileInput
+from ..._types import Body, Omit, Query, Headers, NoneType, NotGiven, Base64FileInput, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -61,16 +61,16 @@ class TemplatepdfResource(SyncAPIResource):
         *,
         group: str,
         pdf_file: Union[str, Base64FileInput],
-        archive_upon_send: bool | NotGiven = NOT_GIVEN,
-        process_tags: bool | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
-        user: str | NotGiven = NOT_GIVEN,
+        archive_upon_send: bool | Omit = omit,
+        process_tags: bool | Omit = omit,
+        title: str | Omit = omit,
+        user: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Upload a PDF document you want to send to be signed
@@ -119,7 +119,7 @@ class TemplatepdfResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TemplatePdf:
         """
         Get PDF template
@@ -146,16 +146,16 @@ class TemplatepdfResource(SyncAPIResource):
     def list(
         self,
         *,
-        archive: str | NotGiven = NOT_GIVEN,
-        group: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        archive: str | Omit = omit,
+        group: str | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TemplatepdfListResponse:
         """
         Get PDF templates
@@ -205,7 +205,7 @@ class TemplatepdfResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delists the PDF
@@ -239,7 +239,7 @@ class TemplatepdfResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Convert any text tags in the PDF into fields
@@ -273,7 +273,7 @@ class TemplatepdfResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Get PDF embeddable link
@@ -327,16 +327,16 @@ class AsyncTemplatepdfResource(AsyncAPIResource):
         *,
         group: str,
         pdf_file: Union[str, Base64FileInput],
-        archive_upon_send: bool | NotGiven = NOT_GIVEN,
-        process_tags: bool | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
-        user: str | NotGiven = NOT_GIVEN,
+        archive_upon_send: bool | Omit = omit,
+        process_tags: bool | Omit = omit,
+        title: str | Omit = omit,
+        user: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Upload a PDF document you want to send to be signed
@@ -385,7 +385,7 @@ class AsyncTemplatepdfResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TemplatePdf:
         """
         Get PDF template
@@ -412,16 +412,16 @@ class AsyncTemplatepdfResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        archive: str | NotGiven = NOT_GIVEN,
-        group: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
+        archive: str | Omit = omit,
+        group: str | Omit = omit,
+        limit: int | Omit = omit,
+        offset: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TemplatepdfListResponse:
         """
         Get PDF templates
@@ -471,7 +471,7 @@ class AsyncTemplatepdfResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delists the PDF
@@ -505,7 +505,7 @@ class AsyncTemplatepdfResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Convert any text tags in the PDF into fields
@@ -539,7 +539,7 @@ class AsyncTemplatepdfResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> str:
         """
         Get PDF embeddable link

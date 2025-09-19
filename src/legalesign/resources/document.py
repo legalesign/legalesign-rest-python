@@ -9,7 +9,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import document_list_params, document_create_params, document_preview_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -62,38 +62,38 @@ class DocumentResource(SyncAPIResource):
         group: str,
         name: str,
         signers: Iterable[document_create_params.Signer],
-        append_pdf: bool | NotGiven = NOT_GIVEN,
-        auto_archive: bool | NotGiven = NOT_GIVEN,
-        cc_emails: str | NotGiven = NOT_GIVEN,
-        convert_sender_to_signer: bool | NotGiven = NOT_GIVEN,
-        do_email: bool | NotGiven = NOT_GIVEN,
-        footer: str | NotGiven = NOT_GIVEN,
-        footer_height: int | NotGiven = NOT_GIVEN,
-        header: str | NotGiven = NOT_GIVEN,
-        header_height: int | NotGiven = NOT_GIVEN,
-        pdf_password: str | NotGiven = NOT_GIVEN,
-        pdf_password_type: Literal[1, 2] | NotGiven = NOT_GIVEN,
-        pdftext: Dict[str, str] | NotGiven = NOT_GIVEN,
-        redirect: str | NotGiven = NOT_GIVEN,
-        reminders: str | NotGiven = NOT_GIVEN,
-        return_signer_links: bool | NotGiven = NOT_GIVEN,
-        signature_type: int | NotGiven = NOT_GIVEN,
-        signers_in_order: bool | NotGiven = NOT_GIVEN,
-        signertext: Dict[str, str] | NotGiven = NOT_GIVEN,
-        strict_fields: bool | NotGiven = NOT_GIVEN,
-        tag: str | NotGiven = NOT_GIVEN,
-        tag1: str | NotGiven = NOT_GIVEN,
-        tag2: str | NotGiven = NOT_GIVEN,
-        template: str | NotGiven = NOT_GIVEN,
-        templatepdf: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        user: str | NotGiven = NOT_GIVEN,
+        append_pdf: bool | Omit = omit,
+        auto_archive: bool | Omit = omit,
+        cc_emails: str | Omit = omit,
+        convert_sender_to_signer: bool | Omit = omit,
+        do_email: bool | Omit = omit,
+        footer: str | Omit = omit,
+        footer_height: int | Omit = omit,
+        header: str | Omit = omit,
+        header_height: int | Omit = omit,
+        pdf_password: str | Omit = omit,
+        pdf_password_type: Literal[1, 2] | Omit = omit,
+        pdftext: Dict[str, str] | Omit = omit,
+        redirect: str | Omit = omit,
+        reminders: str | Omit = omit,
+        return_signer_links: bool | Omit = omit,
+        signature_type: int | Omit = omit,
+        signers_in_order: bool | Omit = omit,
+        signertext: Dict[str, str] | Omit = omit,
+        strict_fields: bool | Omit = omit,
+        tag: str | Omit = omit,
+        tag1: str | Omit = omit,
+        tag2: str | Omit = omit,
+        template: str | Omit = omit,
+        templatepdf: str | Omit = omit,
+        text: str | Omit = omit,
+        user: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentCreateResponse:
         """
         Create signing document
@@ -221,7 +221,7 @@ class DocumentResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentRetrieveResponse:
         """
         Get document
@@ -249,20 +249,20 @@ class DocumentResource(SyncAPIResource):
         self,
         *,
         group: str,
-        archived: str | NotGiven = NOT_GIVEN,
-        created_gt: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        email: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        modified_gt: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        nosigners: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        status: int | NotGiven = NOT_GIVEN,
+        archived: str | Omit = omit,
+        created_gt: Union[str, datetime] | Omit = omit,
+        email: str | Omit = omit,
+        limit: int | Omit = omit,
+        modified_gt: Union[str, datetime] | Omit = omit,
+        nosigners: str | Omit = omit,
+        offset: int | Omit = omit,
+        status: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentListResponse:
         """List (unarchived) signing documents.
 
@@ -331,7 +331,7 @@ class DocumentResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete does not remove permanently but sets it with status 40 (removed) and
@@ -366,7 +366,7 @@ class DocumentResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Permanently deletes data and files.
 
@@ -402,7 +402,7 @@ class DocumentResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
         """
         Download pdf of audit log
@@ -436,7 +436,7 @@ class DocumentResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentGetFieldsResponse:
         """
         Get document fields
@@ -463,16 +463,16 @@ class DocumentResource(SyncAPIResource):
     def preview(
         self,
         *,
-        group: str | NotGiven = NOT_GIVEN,
-        signee_count: int | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        group: str | Omit = omit,
+        signee_count: int | Omit = omit,
+        text: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Returns a redirect response (302) with link in the Location header to a one-use
@@ -533,38 +533,38 @@ class AsyncDocumentResource(AsyncAPIResource):
         group: str,
         name: str,
         signers: Iterable[document_create_params.Signer],
-        append_pdf: bool | NotGiven = NOT_GIVEN,
-        auto_archive: bool | NotGiven = NOT_GIVEN,
-        cc_emails: str | NotGiven = NOT_GIVEN,
-        convert_sender_to_signer: bool | NotGiven = NOT_GIVEN,
-        do_email: bool | NotGiven = NOT_GIVEN,
-        footer: str | NotGiven = NOT_GIVEN,
-        footer_height: int | NotGiven = NOT_GIVEN,
-        header: str | NotGiven = NOT_GIVEN,
-        header_height: int | NotGiven = NOT_GIVEN,
-        pdf_password: str | NotGiven = NOT_GIVEN,
-        pdf_password_type: Literal[1, 2] | NotGiven = NOT_GIVEN,
-        pdftext: Dict[str, str] | NotGiven = NOT_GIVEN,
-        redirect: str | NotGiven = NOT_GIVEN,
-        reminders: str | NotGiven = NOT_GIVEN,
-        return_signer_links: bool | NotGiven = NOT_GIVEN,
-        signature_type: int | NotGiven = NOT_GIVEN,
-        signers_in_order: bool | NotGiven = NOT_GIVEN,
-        signertext: Dict[str, str] | NotGiven = NOT_GIVEN,
-        strict_fields: bool | NotGiven = NOT_GIVEN,
-        tag: str | NotGiven = NOT_GIVEN,
-        tag1: str | NotGiven = NOT_GIVEN,
-        tag2: str | NotGiven = NOT_GIVEN,
-        template: str | NotGiven = NOT_GIVEN,
-        templatepdf: str | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        user: str | NotGiven = NOT_GIVEN,
+        append_pdf: bool | Omit = omit,
+        auto_archive: bool | Omit = omit,
+        cc_emails: str | Omit = omit,
+        convert_sender_to_signer: bool | Omit = omit,
+        do_email: bool | Omit = omit,
+        footer: str | Omit = omit,
+        footer_height: int | Omit = omit,
+        header: str | Omit = omit,
+        header_height: int | Omit = omit,
+        pdf_password: str | Omit = omit,
+        pdf_password_type: Literal[1, 2] | Omit = omit,
+        pdftext: Dict[str, str] | Omit = omit,
+        redirect: str | Omit = omit,
+        reminders: str | Omit = omit,
+        return_signer_links: bool | Omit = omit,
+        signature_type: int | Omit = omit,
+        signers_in_order: bool | Omit = omit,
+        signertext: Dict[str, str] | Omit = omit,
+        strict_fields: bool | Omit = omit,
+        tag: str | Omit = omit,
+        tag1: str | Omit = omit,
+        tag2: str | Omit = omit,
+        template: str | Omit = omit,
+        templatepdf: str | Omit = omit,
+        text: str | Omit = omit,
+        user: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentCreateResponse:
         """
         Create signing document
@@ -692,7 +692,7 @@ class AsyncDocumentResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentRetrieveResponse:
         """
         Get document
@@ -720,20 +720,20 @@ class AsyncDocumentResource(AsyncAPIResource):
         self,
         *,
         group: str,
-        archived: str | NotGiven = NOT_GIVEN,
-        created_gt: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        email: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        modified_gt: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        nosigners: str | NotGiven = NOT_GIVEN,
-        offset: int | NotGiven = NOT_GIVEN,
-        status: int | NotGiven = NOT_GIVEN,
+        archived: str | Omit = omit,
+        created_gt: Union[str, datetime] | Omit = omit,
+        email: str | Omit = omit,
+        limit: int | Omit = omit,
+        modified_gt: Union[str, datetime] | Omit = omit,
+        nosigners: str | Omit = omit,
+        offset: int | Omit = omit,
+        status: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentListResponse:
         """List (unarchived) signing documents.
 
@@ -802,7 +802,7 @@ class AsyncDocumentResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Delete does not remove permanently but sets it with status 40 (removed) and
@@ -837,7 +837,7 @@ class AsyncDocumentResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """Permanently deletes data and files.
 
@@ -873,7 +873,7 @@ class AsyncDocumentResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
         """
         Download pdf of audit log
@@ -907,7 +907,7 @@ class AsyncDocumentResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> DocumentGetFieldsResponse:
         """
         Get document fields
@@ -934,16 +934,16 @@ class AsyncDocumentResource(AsyncAPIResource):
     async def preview(
         self,
         *,
-        group: str | NotGiven = NOT_GIVEN,
-        signee_count: int | NotGiven = NOT_GIVEN,
-        text: str | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        group: str | Omit = omit,
+        signee_count: int | Omit = omit,
+        text: str | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
         Returns a redirect response (302) with link in the Location header to a one-use

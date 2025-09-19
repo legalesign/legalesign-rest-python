@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..types import pdf_create_preview_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -53,7 +53,7 @@ class PdfResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
         """
         Get the PDF for a signing document
@@ -86,18 +86,18 @@ class PdfResource(SyncAPIResource):
         signature_type: int,
         signee_count: int,
         text: str,
-        footer: str | NotGiven = NOT_GIVEN,
-        footer_height: int | NotGiven = NOT_GIVEN,
-        header: str | NotGiven = NOT_GIVEN,
-        header_height: int | NotGiven = NOT_GIVEN,
-        pdfheader: bool | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        footer: str | Omit = omit,
+        footer_height: int | Omit = omit,
+        header: str | Omit = omit,
+        header_height: int | Omit = omit,
+        pdfheader: bool | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
         """
         text/html document as pdf preview
@@ -172,7 +172,7 @@ class AsyncPdfResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
         """
         Get the PDF for a signing document
@@ -205,18 +205,18 @@ class AsyncPdfResource(AsyncAPIResource):
         signature_type: int,
         signee_count: int,
         text: str,
-        footer: str | NotGiven = NOT_GIVEN,
-        footer_height: int | NotGiven = NOT_GIVEN,
-        header: str | NotGiven = NOT_GIVEN,
-        header_height: int | NotGiven = NOT_GIVEN,
-        pdfheader: bool | NotGiven = NOT_GIVEN,
-        title: str | NotGiven = NOT_GIVEN,
+        footer: str | Omit = omit,
+        footer_height: int | Omit = omit,
+        header: str | Omit = omit,
+        header_height: int | Omit = omit,
+        pdfheader: bool | Omit = omit,
+        title: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
         """
         text/html document as pdf preview

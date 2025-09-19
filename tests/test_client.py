@@ -722,20 +722,20 @@ class TestLegalesign:
     @mock.patch("legalesign._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_timeout_errors_doesnt_leak(self, respx_mock: MockRouter, client: Legalesign) -> None:
-        respx_mock.get("/attachment/").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.get("/group/").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            client.attachment.with_streaming_response.list().__enter__()
+            client.group.with_streaming_response.list().__enter__()
 
         assert _get_open_connections(self.client) == 0
 
     @mock.patch("legalesign._base_client.BaseClient._calculate_retry_timeout", _low_retry_timeout)
     @pytest.mark.respx(base_url=base_url)
     def test_retrying_status_errors_doesnt_leak(self, respx_mock: MockRouter, client: Legalesign) -> None:
-        respx_mock.get("/attachment/").mock(return_value=httpx.Response(500))
+        respx_mock.get("/group/").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            client.attachment.with_streaming_response.list().__enter__()
+            client.group.with_streaming_response.list().__enter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -762,9 +762,9 @@ class TestLegalesign:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/attachment/").mock(side_effect=retry_handler)
+        respx_mock.get("/group/").mock(side_effect=retry_handler)
 
-        response = client.attachment.with_raw_response.list()
+        response = client.group.with_raw_response.list()
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -786,9 +786,9 @@ class TestLegalesign:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/attachment/").mock(side_effect=retry_handler)
+        respx_mock.get("/group/").mock(side_effect=retry_handler)
 
-        response = client.attachment.with_raw_response.list(extra_headers={"x-stainless-retry-count": Omit()})
+        response = client.group.with_raw_response.list(extra_headers={"x-stainless-retry-count": Omit()})
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -809,9 +809,9 @@ class TestLegalesign:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/attachment/").mock(side_effect=retry_handler)
+        respx_mock.get("/group/").mock(side_effect=retry_handler)
 
-        response = client.attachment.with_raw_response.list(extra_headers={"x-stainless-retry-count": "42"})
+        response = client.group.with_raw_response.list(extra_headers={"x-stainless-retry-count": "42"})
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
@@ -1539,10 +1539,10 @@ class TestAsyncLegalesign:
     async def test_retrying_timeout_errors_doesnt_leak(
         self, respx_mock: MockRouter, async_client: AsyncLegalesign
     ) -> None:
-        respx_mock.get("/attachment/").mock(side_effect=httpx.TimeoutException("Test timeout error"))
+        respx_mock.get("/group/").mock(side_effect=httpx.TimeoutException("Test timeout error"))
 
         with pytest.raises(APITimeoutError):
-            await async_client.attachment.with_streaming_response.list().__aenter__()
+            await async_client.group.with_streaming_response.list().__aenter__()
 
         assert _get_open_connections(self.client) == 0
 
@@ -1551,10 +1551,10 @@ class TestAsyncLegalesign:
     async def test_retrying_status_errors_doesnt_leak(
         self, respx_mock: MockRouter, async_client: AsyncLegalesign
     ) -> None:
-        respx_mock.get("/attachment/").mock(return_value=httpx.Response(500))
+        respx_mock.get("/group/").mock(return_value=httpx.Response(500))
 
         with pytest.raises(APIStatusError):
-            await async_client.attachment.with_streaming_response.list().__aenter__()
+            await async_client.group.with_streaming_response.list().__aenter__()
         assert _get_open_connections(self.client) == 0
 
     @pytest.mark.parametrize("failures_before_success", [0, 2, 4])
@@ -1582,9 +1582,9 @@ class TestAsyncLegalesign:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/attachment/").mock(side_effect=retry_handler)
+        respx_mock.get("/group/").mock(side_effect=retry_handler)
 
-        response = await client.attachment.with_raw_response.list()
+        response = await client.group.with_raw_response.list()
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1607,9 +1607,9 @@ class TestAsyncLegalesign:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/attachment/").mock(side_effect=retry_handler)
+        respx_mock.get("/group/").mock(side_effect=retry_handler)
 
-        response = await client.attachment.with_raw_response.list(extra_headers={"x-stainless-retry-count": Omit()})
+        response = await client.group.with_raw_response.list(extra_headers={"x-stainless-retry-count": Omit()})
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -1631,9 +1631,9 @@ class TestAsyncLegalesign:
                 return httpx.Response(500)
             return httpx.Response(200)
 
-        respx_mock.get("/attachment/").mock(side_effect=retry_handler)
+        respx_mock.get("/group/").mock(side_effect=retry_handler)
 
-        response = await client.attachment.with_raw_response.list(extra_headers={"x-stainless-retry-count": "42"})
+        response = await client.group.with_raw_response.list(extra_headers={"x-stainless-retry-count": "42"})
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 

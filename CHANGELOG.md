@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.1 (2025-09-20)
+
+Full Changelog: [v1.1.0...v1.1.1](https://github.com/legalesign/legalesign-rest-python/compare/v1.1.0...v1.1.1)
+
+### Chores
+
+* do not install brew dependencies in ./scripts/bootstrap by default ([7f942bb](https://github.com/legalesign/legalesign-rest-python/commit/7f942bb643f0bc471be149767946fe0fb0d58a2d))
+
 ## 1.1.0 (2025-09-19)
 
 Full Changelog: [v1.0.0...v1.1.0](https://github.com/legalesign/legalesign-rest-python/compare/v1.0.0...v1.1.0)

@@ -1,7 +1,7 @@
 # Legalesign SDK Python API library
 
 <!-- prettier-ignore -->
-[![PyPI version](https://img.shields.io/pypi/v/legalesign_sdk.svg?label=pypi%20(stable))](https://pypi.org/project/legalesign_sdk/)
+[![PyPI version](https://img.shields.io/pypi/v/legalesign.svg?label=pypi%20(stable))](https://pypi.org/project/legalesign/)
 
 The Legalesign SDK Python library provides convenient access to the Legalesign SDK REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
@@ -16,12 +16,9 @@ The REST API documentation can be found on [legalesign.com](https://legalesign.c
 ## Installation
 
 ```sh
-# install from the production repo
-pip install git+ssh://git@github.com/legalesign/legalesign-rest-python.git
+# install from PyPI
+pip install legalesign
 ```
-
-> [!NOTE]
-> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install legalesign_sdk`
 
 ## Usage
 
@@ -79,8 +76,8 @@ By default, the async client uses `httpx` for HTTP requests. However, for improv
 You can enable this by installing `aiohttp`:
 
 ```sh
-# install from the production repo
-pip install 'legalesign_sdk[aiohttp] @ git+ssh://git@github.com/legalesign/legalesign-rest-python.git'
+# install from PyPI
+pip install legalesign[aiohttp]
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:

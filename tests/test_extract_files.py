@@ -4,8 +4,8 @@ from typing import Sequence
 
 import pytest
 
-from legalesign._types import FileTypes
-from legalesign._utils import extract_files
+from legalesign_sdk._types import FileTypes
+from legalesign_sdk._utils import extract_files
 
 
 def test_removes_files_from_input() -> None:

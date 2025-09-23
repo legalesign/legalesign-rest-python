@@ -7,9 +7,9 @@ import pytest
 import pydantic
 from pydantic import Field
 
-from legalesign._utils import PropertyInfo
-from legalesign._compat import PYDANTIC_V1, parse_obj, model_dump, model_json
-from legalesign._models import BaseModel, construct_type
+from legalesign_sdk._utils import PropertyInfo
+from legalesign_sdk._compat import PYDANTIC_V1, parse_obj, model_dump, model_json
+from legalesign_sdk._models import BaseModel, construct_type
 
 
 class BasicModel(BaseModel):

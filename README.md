@@ -1,9 +1,9 @@
-# Legalesign Python API library
+# Legalesign SDK Python API library
 
 <!-- prettier-ignore -->
-[![PyPI version](https://img.shields.io/pypi/v/legalesign.svg?label=pypi%20(stable))](https://pypi.org/project/legalesign/)
+[![PyPI version](https://img.shields.io/pypi/v/legalesign_sdk.svg?label=pypi%20(stable))](https://pypi.org/project/legalesign_sdk/)
 
-The Legalesign Python library provides convenient access to the Legalesign REST API from any Python 3.8+
+The Legalesign SDK Python library provides convenient access to the Legalesign SDK REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -16,9 +16,12 @@ The REST API documentation can be found on [legalesign.com](https://legalesign.c
 ## Installation
 
 ```sh
-# install from PyPI
-pip install legalesign
+# install from this staging repo
+pip install git+ssh://git@github.com/stainless-sdks/legalesign-sdk-python.git
 ```
+
+> [!NOTE]
+> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install legalesign_sdk`
 
 ## Usage
 
@@ -26,38 +29,42 @@ The full API of this library can be found in [api.md](api.md).
 
 ```python
 import os
-from legalesign import Legalesign
+from legalesign_sdk import LegalesignSDK
 
-client = Legalesign(
-    api_key=os.environ.get("LEGALESIGN_API_KEY"),  # This is the default and can be omitted
+client = LegalesignSDK(
+    api_key=os.environ.get("LEGALESIGN_SDK_API_KEY"),  # This is the default and can be omitted
 )
 
-groups = client.group.list()
-print(groups.meta)
+documents = client.document.list(
+    group="REPLACE_ME",
+)
+print(documents.meta)
 ```
 
 While you can provide an `api_key` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `LEGALESIGN_API_KEY="My API Key"` to your `.env` file
+to add `LEGALESIGN_SDK_API_KEY="My API Key"` to your `.env` file
 so that your API Key is not stored in source control.
 
 ## Async usage
 
-Simply import `AsyncLegalesign` instead of `Legalesign` and use `await` with each API call:
+Simply import `AsyncLegalesignSDK` instead of `LegalesignSDK` and use `await` with each API call:
 
 ```python
 import os
 import asyncio
-from legalesign import AsyncLegalesign
+from legalesign_sdk import AsyncLegalesignSDK
 
-client = AsyncLegalesign(
-    api_key=os.environ.get("LEGALESIGN_API_KEY"),  # This is the default and can be omitted
+client = AsyncLegalesignSDK(
+    api_key=os.environ.get("LEGALESIGN_SDK_API_KEY"),  # This is the default and can be omitted
 )
 
 
 async def main() -> None:
-    groups = await client.group.list()
-    print(groups.meta)
+    documents = await client.document.list(
+        group="REPLACE_ME",
+    )
+    print(documents.meta)
 
 
 asyncio.run(main())
@@ -72,25 +79,27 @@ By default, the async client uses `httpx` for HTTP requests. However, for improv
 You can enable this by installing `aiohttp`:
 
 ```sh
-# install from PyPI
-pip install legalesign[aiohttp]
+# install from this staging repo
+pip install 'legalesign_sdk[aiohttp] @ git+ssh://git@github.com/stainless-sdks/legalesign-sdk-python.git'
 ```
 
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
 import asyncio
-from legalesign import DefaultAioHttpClient
-from legalesign import AsyncLegalesign
+from legalesign_sdk import DefaultAioHttpClient
+from legalesign_sdk import AsyncLegalesignSDK
 
 
 async def main() -> None:
-    async with AsyncLegalesign(
+    async with AsyncLegalesignSDK(
         api_key="My API Key",
         http_client=DefaultAioHttpClient(),
     ) as client:
-        groups = await client.group.list()
-        print(groups.meta)
+        documents = await client.document.list(
+            group="REPLACE_ME",
+        )
+        print(documents.meta)
 
 
 asyncio.run(main())
@@ -107,27 +116,29 @@ Typed requests and responses provide autocomplete and documentation within your 
 
 ## Handling errors
 
-When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `legalesign.APIConnectionError` is raised.
+When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `legalesign_sdk.APIConnectionError` is raised.
 
 When the API returns a non-success status code (that is, 4xx or 5xx
-response), a subclass of `legalesign.APIStatusError` is raised, containing `status_code` and `response` properties.
+response), a subclass of `legalesign_sdk.APIStatusError` is raised, containing `status_code` and `response` properties.
 
-All errors inherit from `legalesign.APIError`.
+All errors inherit from `legalesign_sdk.APIError`.
 
 ```python
-import legalesign
-from legalesign import Legalesign
+import legalesign_sdk
+from legalesign_sdk import LegalesignSDK
 
-client = Legalesign()
+client = LegalesignSDK()
 
 try:
-    client.group.list()
-except legalesign.APIConnectionError as e:
+    client.document.list(
+        group="REPLACE_ME",
+    )
+except legalesign_sdk.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
-except legalesign.RateLimitError as e:
+except legalesign_sdk.RateLimitError as e:
     print("A 429 status code was received; we should back off a bit.")
-except legalesign.APIStatusError as e:
+except legalesign_sdk.APIStatusError as e:
     print("Another non-200-range status code was received")
     print(e.status_code)
     print(e.response)
@@ -155,16 +166,18 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from legalesign import Legalesign
+from legalesign_sdk import LegalesignSDK
 
 # Configure the default for all requests:
-client = Legalesign(
+client = LegalesignSDK(
     # default is 2
     max_retries=0,
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).group.list()
+client.with_options(max_retries=5).document.list(
+    group="REPLACE_ME",
+)
 ```
 
 ### Timeouts
@@ -173,21 +186,23 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:
 
 ```python
-from legalesign import Legalesign
+from legalesign_sdk import LegalesignSDK
 
 # Configure the default for all requests:
-client = Legalesign(
+client = LegalesignSDK(
     # 20 seconds (default is 1 minute)
     timeout=20.0,
 )
 
 # More granular control:
-client = Legalesign(
+client = LegalesignSDK(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).group.list()
+client.with_options(timeout=5.0).document.list(
+    group="REPLACE_ME",
+)
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -200,10 +215,10 @@ Note that requests that time out are [retried twice by default](#retries).
 
 We use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.
 
-You can enable logging by setting the environment variable `LEGALESIGN_LOG` to `info`.
+You can enable logging by setting the environment variable `LEGALESIGN_SDK_LOG` to `info`.
 
 ```shell
-$ export LEGALESIGN_LOG=info
+$ export LEGALESIGN_SDK_LOG=info
 ```
 
 Or to `debug` for more verbose logging.
@@ -225,19 +240,21 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
-from legalesign import Legalesign
+from legalesign_sdk import LegalesignSDK
 
-client = Legalesign()
-response = client.group.with_raw_response.list()
+client = LegalesignSDK()
+response = client.document.with_raw_response.list(
+    group="REPLACE_ME",
+)
 print(response.headers.get('X-My-Header'))
 
-group = response.parse()  # get the object that `group.list()` would have returned
-print(group.meta)
+document = response.parse()  # get the object that `document.list()` would have returned
+print(document.meta)
 ```
 
-These methods return an [`APIResponse`](https://github.com/legalesign/legalesign-rest-python/tree/main/src/legalesign/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/stainless-sdks/legalesign-sdk-python/tree/main/src/legalesign_sdk/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/legalesign/legalesign-rest-python/tree/main/src/legalesign/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/legalesign-sdk-python/tree/main/src/legalesign_sdk/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -246,7 +263,9 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.group.with_streaming_response.list() as response:
+with client.document.with_streaming_response.list(
+    group="REPLACE_ME",
+) as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():
@@ -299,10 +318,10 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 
 ```python
 import httpx
-from legalesign import Legalesign, DefaultHttpxClient
+from legalesign_sdk import LegalesignSDK, DefaultHttpxClient
 
-client = Legalesign(
-    # Or use the `LEGALESIGN_BASE_URL` env var
+client = LegalesignSDK(
+    # Or use the `LEGALESIGN_SDK_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(
         proxy="http://my.test.proxy.example.com",
@@ -322,9 +341,9 @@ client.with_options(http_client=DefaultHttpxClient(...))
 By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
 
 ```py
-from legalesign import Legalesign
+from legalesign_sdk import LegalesignSDK
 
-with Legalesign() as client:
+with LegalesignSDK() as client:
   # make requests here
   ...
 
@@ -341,7 +360,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/legalesign/legalesign-rest-python/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/legalesign-sdk-python/issues) with questions, bugs, or suggestions.
 
 ### Determining the installed version
 
@@ -350,8 +369,8 @@ If you've upgraded to the latest version but aren't seeing any new features you 
 You can determine the version that is being used at runtime with:
 
 ```py
-import legalesign
-print(legalesign.__version__)
+import legalesign_sdk
+print(legalesign_sdk.__version__)
 ```
 
 ## Requirements

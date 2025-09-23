@@ -1,4 +1,4 @@
-from legalesign._utils import deepcopy_minimal
+from legalesign_sdk._utils import deepcopy_minimal
 
 
 def assert_different_identities(obj1: object, obj2: object) -> None:

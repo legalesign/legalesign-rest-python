@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0 (2025-09-23)
+
+Full Changelog: [v1.1.0...v1.1.0](https://github.com/legalesign/legalesign-rest-python/compare/v1.1.0...v1.1.0)
+
+### Chores
+
+* update SDK settings ([c268865](https://github.com/legalesign/legalesign-rest-python/commit/c268865fc77e2bda0f87b34d4d7ff7a712f60beb))
+
 ## 1.1.0 (2025-09-19)
 
 Full Changelog: [v1.0.0...v1.1.0](https://github.com/legalesign/legalesign-rest-python/compare/v1.0.0...v1.1.0)

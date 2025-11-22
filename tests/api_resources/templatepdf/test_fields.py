@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
-from legalesign import Legalesign, AsyncLegalesign
 from tests.utils import assert_matches_type
-from legalesign.types.templatepdf import FieldListResponse
+from legalesign_sdk import LegalesignSDK, AsyncLegalesignSDK
+from legalesign_sdk.types.templatepdf import FieldListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,7 +19,7 @@ class TestFields:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_create(self, client: Legalesign) -> None:
+    def test_method_create(self, client: LegalesignSDK) -> None:
         field = client.templatepdf.fields.create(
             pdf_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             body=[
@@ -38,7 +38,7 @@ class TestFields:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_create(self, client: Legalesign) -> None:
+    def test_raw_response_create(self, client: LegalesignSDK) -> None:
         response = client.templatepdf.fields.with_raw_response.create(
             pdf_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             body=[
@@ -61,7 +61,7 @@ class TestFields:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_create(self, client: Legalesign) -> None:
+    def test_streaming_response_create(self, client: LegalesignSDK) -> None:
         with client.templatepdf.fields.with_streaming_response.create(
             pdf_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             body=[
@@ -86,7 +86,7 @@ class TestFields:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_path_params_create(self, client: Legalesign) -> None:
+    def test_path_params_create(self, client: LegalesignSDK) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pdf_id` but received ''"):
             client.templatepdf.fields.with_raw_response.create(
                 pdf_id="",
@@ -105,7 +105,7 @@ class TestFields:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_list(self, client: Legalesign) -> None:
+    def test_method_list(self, client: LegalesignSDK) -> None:
         field = client.templatepdf.fields.list(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -113,7 +113,7 @@ class TestFields:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_list(self, client: Legalesign) -> None:
+    def test_raw_response_list(self, client: LegalesignSDK) -> None:
         response = client.templatepdf.fields.with_raw_response.list(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -125,7 +125,7 @@ class TestFields:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_list(self, client: Legalesign) -> None:
+    def test_streaming_response_list(self, client: LegalesignSDK) -> None:
         with client.templatepdf.fields.with_streaming_response.list(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
@@ -139,7 +139,7 @@ class TestFields:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_path_params_list(self, client: Legalesign) -> None:
+    def test_path_params_list(self, client: LegalesignSDK) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pdf_id` but received ''"):
             client.templatepdf.fields.with_raw_response.list(
                 "",
@@ -153,7 +153,7 @@ class TestAsyncFields:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_create(self, async_client: AsyncLegalesign) -> None:
+    async def test_method_create(self, async_client: AsyncLegalesignSDK) -> None:
         field = await async_client.templatepdf.fields.create(
             pdf_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             body=[
@@ -172,7 +172,7 @@ class TestAsyncFields:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncLegalesign) -> None:
+    async def test_raw_response_create(self, async_client: AsyncLegalesignSDK) -> None:
         response = await async_client.templatepdf.fields.with_raw_response.create(
             pdf_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             body=[
@@ -195,7 +195,7 @@ class TestAsyncFields:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncLegalesign) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncLegalesignSDK) -> None:
         async with async_client.templatepdf.fields.with_streaming_response.create(
             pdf_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             body=[
@@ -220,7 +220,7 @@ class TestAsyncFields:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_path_params_create(self, async_client: AsyncLegalesign) -> None:
+    async def test_path_params_create(self, async_client: AsyncLegalesignSDK) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pdf_id` but received ''"):
             await async_client.templatepdf.fields.with_raw_response.create(
                 pdf_id="",
@@ -239,7 +239,7 @@ class TestAsyncFields:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_list(self, async_client: AsyncLegalesign) -> None:
+    async def test_method_list(self, async_client: AsyncLegalesignSDK) -> None:
         field = await async_client.templatepdf.fields.list(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -247,7 +247,7 @@ class TestAsyncFields:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncLegalesign) -> None:
+    async def test_raw_response_list(self, async_client: AsyncLegalesignSDK) -> None:
         response = await async_client.templatepdf.fields.with_raw_response.list(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         )
@@ -259,7 +259,7 @@ class TestAsyncFields:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncLegalesign) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncLegalesignSDK) -> None:
         async with async_client.templatepdf.fields.with_streaming_response.list(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
         ) as response:
@@ -273,7 +273,7 @@ class TestAsyncFields:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_path_params_list(self, async_client: AsyncLegalesign) -> None:
+    async def test_path_params_list(self, async_client: AsyncLegalesignSDK) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pdf_id` but received ''"):
             await async_client.templatepdf.fields.with_raw_response.list(
                 "",

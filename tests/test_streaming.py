@@ -5,13 +5,13 @@ from typing import Iterator, AsyncIterator
 import httpx
 import pytest
 
-from legalesign import Legalesign, AsyncLegalesign
-from legalesign._streaming import Stream, AsyncStream, ServerSentEvent
+from legalesign_sdk import LegalesignSDK, AsyncLegalesignSDK
+from legalesign_sdk._streaming import Stream, AsyncStream, ServerSentEvent
 
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("sync", [True, False], ids=["sync", "async"])
-async def test_basic(sync: bool, client: Legalesign, async_client: AsyncLegalesign) -> None:
+async def test_basic(sync: bool, client: LegalesignSDK, async_client: AsyncLegalesignSDK) -> None:
     def body() -> Iterator[bytes]:
         yield b"event: completion\n"
         yield b'data: {"foo":true}\n'
@@ -28,7 +28,7 @@ async def test_basic(sync: bool, client: Legalesign, async_client: AsyncLegalesi
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("sync", [True, False], ids=["sync", "async"])
-async def test_data_missing_event(sync: bool, client: Legalesign, async_client: AsyncLegalesign) -> None:
+async def test_data_missing_event(sync: bool, client: LegalesignSDK, async_client: AsyncLegalesignSDK) -> None:
     def body() -> Iterator[bytes]:
         yield b'data: {"foo":true}\n'
         yield b"\n"
@@ -44,7 +44,7 @@ async def test_data_missing_event(sync: bool, client: Legalesign, async_client: 
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("sync", [True, False], ids=["sync", "async"])
-async def test_event_missing_data(sync: bool, client: Legalesign, async_client: AsyncLegalesign) -> None:
+async def test_event_missing_data(sync: bool, client: LegalesignSDK, async_client: AsyncLegalesignSDK) -> None:
     def body() -> Iterator[bytes]:
         yield b"event: ping\n"
         yield b"\n"
@@ -60,7 +60,7 @@ async def test_event_missing_data(sync: bool, client: Legalesign, async_client: 
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("sync", [True, False], ids=["sync", "async"])
-async def test_multiple_events(sync: bool, client: Legalesign, async_client: AsyncLegalesign) -> None:
+async def test_multiple_events(sync: bool, client: LegalesignSDK, async_client: AsyncLegalesignSDK) -> None:
     def body() -> Iterator[bytes]:
         yield b"event: ping\n"
         yield b"\n"
@@ -82,7 +82,7 @@ async def test_multiple_events(sync: bool, client: Legalesign, async_client: Asy
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("sync", [True, False], ids=["sync", "async"])
-async def test_multiple_events_with_data(sync: bool, client: Legalesign, async_client: AsyncLegalesign) -> None:
+async def test_multiple_events_with_data(sync: bool, client: LegalesignSDK, async_client: AsyncLegalesignSDK) -> None:
     def body() -> Iterator[bytes]:
         yield b"event: ping\n"
         yield b'data: {"foo":true}\n'
@@ -107,7 +107,7 @@ async def test_multiple_events_with_data(sync: bool, client: Legalesign, async_c
 @pytest.mark.asyncio
 @pytest.mark.parametrize("sync", [True, False], ids=["sync", "async"])
 async def test_multiple_data_lines_with_empty_line(
-    sync: bool, client: Legalesign, async_client: AsyncLegalesign
+    sync: bool, client: LegalesignSDK, async_client: AsyncLegalesignSDK
 ) -> None:
     def body() -> Iterator[bytes]:
         yield b"event: ping\n"
@@ -130,7 +130,9 @@ async def test_multiple_data_lines_with_empty_line(
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("sync", [True, False], ids=["sync", "async"])
-async def test_data_json_escaped_double_new_line(sync: bool, client: Legalesign, async_client: AsyncLegalesign) -> None:
+async def test_data_json_escaped_double_new_line(
+    sync: bool, client: LegalesignSDK, async_client: AsyncLegalesignSDK
+) -> None:
     def body() -> Iterator[bytes]:
         yield b"event: ping\n"
         yield b'data: {"foo": "my long\\n\\ncontent"}'
@@ -147,7 +149,7 @@ async def test_data_json_escaped_double_new_line(sync: bool, client: Legalesign,
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("sync", [True, False], ids=["sync", "async"])
-async def test_multiple_data_lines(sync: bool, client: Legalesign, async_client: AsyncLegalesign) -> None:
+async def test_multiple_data_lines(sync: bool, client: LegalesignSDK, async_client: AsyncLegalesignSDK) -> None:
     def body() -> Iterator[bytes]:
         yield b"event: ping\n"
         yield b"data: {\n"
@@ -167,8 +169,8 @@ async def test_multiple_data_lines(sync: bool, client: Legalesign, async_client:
 @pytest.mark.parametrize("sync", [True, False], ids=["sync", "async"])
 async def test_special_new_line_character(
     sync: bool,
-    client: Legalesign,
-    async_client: AsyncLegalesign,
+    client: LegalesignSDK,
+    async_client: AsyncLegalesignSDK,
 ) -> None:
     def body() -> Iterator[bytes]:
         yield b'data: {"content":" culpa"}\n'
@@ -198,8 +200,8 @@ async def test_special_new_line_character(
 @pytest.mark.parametrize("sync", [True, False], ids=["sync", "async"])
 async def test_multi_byte_character_multiple_chunks(
     sync: bool,
-    client: Legalesign,
-    async_client: AsyncLegalesign,
+    client: LegalesignSDK,
+    async_client: AsyncLegalesignSDK,
 ) -> None:
     def body() -> Iterator[bytes]:
         yield b'data: {"content":"'
@@ -239,8 +241,8 @@ def make_event_iterator(
     content: Iterator[bytes],
     *,
     sync: bool,
-    client: Legalesign,
-    async_client: AsyncLegalesign,
+    client: LegalesignSDK,
+    async_client: AsyncLegalesignSDK,
 ) -> Iterator[ServerSentEvent] | AsyncIterator[ServerSentEvent]:
     if sync:
         return Stream(cast_to=object, client=client, response=httpx.Response(200, content=content))._iter_events()

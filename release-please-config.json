@@ -61,6 +61,6 @@
   ],
   "release-type": "python",
   "extra-files": [
-    "src/legalesign/_version.py"
+    "src/legalesign_sdk/_version.py"
   ]
 }
